@@ -1,0 +1,50 @@
+---
+title: css
+date: 2020-03-31 19:22:45
+tags:
+---
+# 拟态化
+![a a](/img/css01.png)
+```html
+<style>
+    body {
+        background: #ecf0f3;
+    }
+    div {
+        position: relative;
+        float: left;
+        width: 200px;
+        height: 200px;
+        margin-left: 80px;
+        margin-top: 80px;
+        background: #ecf0f3;
+    }
+    .drop-shadow {
+        border-radius: 20px;
+        box-shadow: 18px 18px 30px #d1d9e6, -18px -18px 30px #fff;
+    }
+    .inner-shadow {
+        border-radius: 20px;
+        box-shadow: inset 18px 18px 30px #d1d9e6, inset -18px -18px 30px #fff;
+    }
+    .inner-shadow-ring {
+        border-radius: 100%;
+        box-shadow: inset 9px 9px 15px #d1d9e6, inset -9px -9px 15px #fff;
+    }
+    .inner-shadow-ring:before {
+        content: "";
+        position: absolute;
+        left: 20%;
+        top: 20%;
+        width: 60%;
+        height: 60%;
+        border-radius: 100%;
+        background: #ecf0f3;
+        box-shadow: 9px 9px 15px #d1d9e6, -9px -9px 15px #fff;
+    }
+    </style>
+     
+    <div class="drop-shadow"></div>
+    <div class="inner-shadow"></div>
+    <div class="inner-shadow-ring"></div>
+```

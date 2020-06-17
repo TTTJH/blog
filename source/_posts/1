@@ -1,0 +1,373 @@
+---
+title: 汇编语言
+date: 2020-03-19 17:42:05
+tags:
+index_img: /img/assemblyimg.jpeg
+---
+# Hello Assembly Language
+
+* 使用软件
+	* dosbox
+	* debug.exe
+![assembly assemblt](/img/assembly.png)
+
+# dosbox
+![assembly assemblt](/img/assembly2.png)
+
+![assembly assemblt](/img/assembly3.png)
+
+![assembly assemblt](/img/assembly4.png)
+
+![assembly assemblt](/img/assembly5.png)
+
+![assembly assemblt](/img/assembly6.png)
+
+# 内存编号
+![assembly assemblt](/img/assembly7.png)
+* 问题：内存编号为什么是从０开始的？
+	* 物理限制
+	* 假设内存只有一条地址线，那么该内存可表示的内存编号只有　０　和　１
+* 问题：是什么是寻址能力？
+	* 地址线的数量决定内存地址的大小
+
+# 习题
+![a a](/img/assembly9.png)
+
+# 图....
+* 左边部分(键盘、鼠标、音响)cpu通过　端口　来访问
+	*　(键盘鼠标音响cpu也是给他们编了号的)
+* 右边部分（内存空间）cpu是通过内存地址来访问
+* cpu又通过地址线、数据线、控制线访问端口，访问内存地址
+![a a](/img/assembly_img1.png)
+
+# 寄存器与指令
+* 寄存器
+	* cpu中存放　地址信息　和　数据信息　的地方
+* 汇编程序员就是通过　汇编语言　中的　汇编指令　去修改　寄存器中的内容，控制cpu从而控制整个计算机
+* 寄存器有　数据寄存器　和　指令寄存器
+![a a](/img/assembly_register1.png)
+
+## AX,BX,CX,DX寄存器
+![a a](/img/assembly10.png)
+
+![a a](/img/assembly11.png)
+
+## 操作AX,BX,CX,DX寄存器
+![a a](/img/assembly_register2.png)
+
+![a a](/img/assembly_register3.png)
+
+![a a](/img/assembly_register4.png)
+
+![a a](/img/assembly_register5.png)
+* 数据与寄存器位数不一致的结果
+* al是低８位寄存器，所以输入的十六进制形式数据最高只能有２位
+![a a](/img/assembly_register6.png)
+
+![a a](/img/assembly_register7.png)
+
+## 寄存器test
+![a a](/img/assembly_register_test.png)
+
+## 表示内存地址信息的寄存器
+![a a](/img/assembly_register8.png)
+![a a](/img/assembly_register9.png)
+
+![a a](/img/assembly_register10.png)
+![a a](/img/assembly_register11.png)
+![a a](/img/assembly_register12.png)
+
+
+* 不同的段地址，和偏移地址　只要符合公式，则表示的物理地址是一样的，所代表数据也是一样。
+![a a](/img/assembly_register13.png)
+![a a](/img/assembly_register14.png)
+![a a](/img/assembly_register15.png)
+![a a](/img/assembly_register16.png)
+
+## CPU怎样区分数据与指令
+![a a](/img/assembly_difference01.png)
+
+* 练习
+![a a](/img/assembly_difference02.png)
+	* 首先使用d命令查看内存数据
+		* ![a a](/img/assembly_difference03.png)
+	* 使用e命令将机器码输入至内存2000:0
+		* ![a a](/img/assembly_difference04.png)
+	* 再用d命令查看内存数据
+		* ![a a](/img/assembly_difference05.png)
+	* 使用u命令反义机器码为汇编语言进行查看
+		* ![a a](/img/assembly_difference06.png)
+	* 使用r命令查看当前各寄存器状态
+		* ![a a](/img/assembly_difference07.png)
+	* 使用r命令修改段地址寄存器cs保存地址为2000,偏移地址寄存器ip保存地址为0
+		* ![a a](/img/assembly_difference08.png)
+	* 使用t命令执行各指令
+		* ![a a](/img/assembly_difference09.png)
+## ip寄存器与指令长度的关系
+	![a a](/img/assembly_ip01.png)
+
+	![a a](/img/assembly_ip02.png)
+## 修改cs和ip的指令　jmp
+	* jmp 2000:0
+	![a a](/img/assembly_ip03.png)
+	* jmp　寄存器
+	![a a](/img/assembly_ip04.png)
+## 指令执行过程　
+	![a a](/img/assembly_ip05.png)
+## 指令执行过程练习
+	![a a](/img/assembly_ip_test.png)
+
+# dosbox的debug指令使用
+![a a](/img/assembly_dos01.png)
+
+![a a](/img/assembly_dos02.png)
+
+![a a](/img/assembly_dos03.png)	
+![a a](/img/assembly_dos04.png)	
+
+# 字节型数据和字型数据
+![a a](/img/assembly_data01.png)
+* 本例子为8086所以1字=2字节=16bit
+* 注意区分内存地址的高低位和寄存器保存数据的高地位
+![a a](/img/assembly_data02.png)
+![a a](/img/assembly_data03.png)
+## 加深字节型数据和字型数据的印象
+![a a](/img/assembly_data04.png)
+
+* ds是段地址寄存器，下方出现的[xxxx]指的是偏移地址，ds:[xxxx]指的是段地址搭配偏移地址执行的物理地址中的内容
+* 这里第一部分实现的是往AL中移动一字节(8bit)大小的数据，
+![a a](/img/assembly_data_test1.png)
+![a a](/img/assembly_data_test2.png)
+![a a](/img/assembly_data_test3.png)
+* 这里第二部分,实现的是往AX高地位移动一字(8086中的2字节)大小的数据
+![a a](/img/assembly_data_test4.png)
+![a a](/img/assembly_data_test5.png)
+![a a](/img/assembly_data_test6.png)
+![a a](/img/assembly_data_test7.png)
+## 加深字节型数据和字型数据的印象2
+![a a](/img/assembly_data_test8.png)
+![a a](/img/assembly_data_test9.png)
+
+## test
+* 题目一
+![a a](/img/assembly_new01.png)
+* 题目二
+	* 这里写错了，应该是字型(8086中1字 = 2字节)数据
+![a a](/img/assembly_new02.png)
+* 题目三
+![a a](/img/assembly_new03.png)
+
+# 栈
+* 栈 是一段连续的内存单元，也就是一段连续的内存地址
+## 从内存角度看待 栈
+![a a](/img/assembly_stack01.png)
+* 入栈，出栈时候与寄存器交互过程
+![a a](/img/assembly_stack03.png)
+## 栈的设置
+![a a](/img/assembly_stack04.png)
+## 栈的使用
+![a a](/img/assembly_use_stack01.png)
+![a a](/img/assembly_use_stack02.png)
+![a a](/img/assembly_use_stack03.png)
+![a a](/img/assembly_use_stack04.png)
+![a a](/img/assembly_use_stack5.png)
+## 栈的大小
+![a a](/img/assembly_stack_size.png)
+## 栈的极限大小
+![a a](/img/assembly_stack_size2.png)
+## 利用栈临时保存数据(栈的作用)
+![a a](/img/assembly_question.png)
+![a a](/img/assembly_question2.png)
+* 此处是使用call 指令将即将执行的ip入栈，而去执行ip=001c的物理地址指令，在ret指令后保存的ip出栈，继续执行。
+![a a](/img/assembly_useStack1.png)
+![a a](/img/assembly_useStack2.png)
+![a a](/img/assembly_useStack3.png)
+![a a](/img/assembly_useStack4.png)
+* 保存临时数据例子2
+![a a](/img/assembly_useStackSave.png)
+## 利用栈交换数据(栈的作用)
+![a a](/img/assembly_useStackSwap.png)
+![a a](/img/assembly_useStackSwap2.png)
+## 栈的检测题
+* 注意ds:[xx]的操作类型是字型数据(8086中的2个字节大小)
+![a a](/img/assembly_question3_2.png)
+![a a](/img/assembly_question3_2_2.png)
+## 栈的检测题
+![a a](/img/assembly_question3_2_3.png)
+# 为什么需要编译和链接
+![a a](/img/assembly_ml1.png)
+![a a](/img/assembly_ml2.png)
+* 准备好asm文件
+![a a](/img/assembly_makeexe1.png)
+![a a](/img/assembly_makeexe2.png)
+![a a](/img/assembly_makeexe3.png)
+![a a](/img/assembly_makeexe4.png)
+
+
+# exe可执行文件
+![a a](/img/assembly_exe1.png)
+# 关于源文件
+![a a](/img/assembly_assume1.png)
+![a a](/img/assembly_assume3.png)
+![a a](/img/assembly_assume4.png)
+# 实验
+![a a](/img/assembly_masm1.png)
+![a a](/img/assembly_masm2.png)
+![a a](/img/assembly_setNumber.png)
+# 重要概念
+* 操作系统执行exe文件的过程实际就是操作系统为其分配内存空间的过程
+# loop指令
+![a a](/img/assembly_loop1.png)
+![a a](/img/assembly_loop2.png)
+* loop的使用
+![a a](/img/assembly_loop3.png)
+## loop的练习
+![a a](/img/assembly_useloop1.png)
+![a a](/img/assembly_useloop2.png)
+* 然后在dos中编译链接即可
+![a a](/img/assembly_useloop3.png)
+![a a](/img/assembly_useloop4.png)
+* 例子3
+![a a](/img/assembly_useloop5.png)
+![a a](/img/assembly_useloop6.png)
+![a a](/img/assembly_useloop7.png)
+* 例子4
+![a a](/img/assembly_looptest1.png)
+![a a](/img/assembly_looptest2.png)
+* 例子5
+* 第一个空填 cs,第二个填23,23是数出来的
+![a a](/img/assembly_looptest3.png)
+
+# dw
+* 使用dw规定了该数据为字类型数据
+* dw = define word
+![a a](/img/assembly_dw1.png)
+![a a](/img/assembly_dw2.png)
+* 将dw定义的字类型数据相加结果输出ax
+* 注意使用start伪指令来跳过dw部分执行
+* 使用jmp指令也可
+![a a](/img/assembly_dw3.png)
+![a a](/img/assembly_dw4.png)
+![a a](/img/assembly_dw5.png)
+## dw测试
+![a a](/img/assembly_dwtest0.png)
+![a a](/img/assembly_dwtest1.png)
+
+![a a](/img/assembly_dwtest3.png)
+![a a](/img/assembly_dwtest4.png)
+# 将数据、代码、栈、放入不同的数据段
+![a a](/img/assembly_three1.png)
+* 最后一行写错了，应该是code ends ,start写到程序最后end的后面 
+![a a](/img/assembly_three2.png)
+
+# db测试
+![a a](/img/assembly_dbtest1.png)
+![a a](/img/assembly_dbtest2.png)
+![a a](/img/assembly_dbtest3.png)
+
+# 以字符的形式给出数据
+![a a](/img/assembly_dbs1.png)
+![a a](/img/assembly_dbs2.png)
+
+# 大小写转换
+![a a](/img/assembly_letter1.png)
+![a a](/img/assembly_letter2.png)
+
+# 使用si、di寄存器
+* 采用字节单位
+![a a](/img/assembly_sidi1.png)
+![a a](/img/assembly_sidi2.png)
+* 采用字位
+![a a](/img/assembly_disi3.png)
+![a a](/img/assembly_disi3.png)
+
+# 嵌套循环
+![a a](/img/assembly_df1.png)
+![a a](/img/assembly_df2.png)
+* 例子2
+![a a](/img/assembly_df3.png)
+![a a](/img/assembly_df4.png)
+
+# 不通过寄存器确定数据的长度
+![a a](/img/assembly_dataSize1.png)
+![a a](/img/assembly_dataSize2.png)
+![a a](/img/assembly_dataSize3.png)
+![a a](/img/assembly_dataSize4.png)
+# 数据长度练习
+![a a](/img/assembly_dataSizeTest.png)
+
+# div除法指令
+![a a](/img/assembly_div1.png)
+![a a](/img/assembly_div2.png)
+![a a](/img/assembly_div3.png)
+![a a](/img/assembly_div4.png)
+* 将除数放在ds
+![a a](/img/assembly_div5.png)
+![a a](/img/assembly_div6.png)
+* 练习
+![a a](/img/assembly_div7.png)
+![a a](/img/assembly_div8.png)
+![a a](/img/assembly_div9.png)
+![a a](/img/assembly_div10.png)
+![a a](/img/assembly_div11.png)
+![a a](/img/assembly_div12.png)
+# dd伪指令
+![a a](/img/assembly_dd1.png)
+![a a](/img/assembly_dd2.png)
+![a a](/img/assembly_dd3.png)
+
+# dup伪指令
+![a a](/img/assembly_dup1.png)
+![a a](/img/assembly_dup2.png)
+
+# OFFSET
+![a a](/img/assembly_offset1.png)
+![a a](/img/assembly_offset2.png)
+![a a](/img/assembly_offset3.png)
+![a a](/img/assembly_offset4.png)
+
+# jmp指令原理
+![a a](/img/assembly_jmpp1.png)
+![a a](/img/assembly_jmpp2.png)
+![a a](/img/assembly_jmpp3.png)
+![a a](/img/assembly_jmpp4.png)
+
+# jcxz指令
+![a a](/img/assembly_jcxz1.png)
+![a a](/img/assembly_jcxz2.png)
+
+# loop指令
+![a a](/img/assembly_loopp1.png)
+![a a](/img/assembly_loopp2.png)
+
+# 转移目的地址在 机器码 或 寄存器 中
+* jmp指令的机器码中包含着转移目的地址
+# 监测点9
+* jmp word ptr ds:[bx+1]的效果：ip = ds:[bx+1] = ds:[1] = OFFSET start = 2233
+![a a](/img/assembly_nine1.png)
+![a a](/img/assembly_nine2.png)
+![a a](/img/assembly_nine3.png)
+![a a](/img/assembly_nine4.png)
+![a a](/img/assembly_nine5.png)
+
+# ret指令和retf指令
+![a a](/img/assembly_ret1.png)
+![a a](/img/assembly_ret2.png)
+![a a](/img/assembly_ret3.png)
+
+# call指令 根据位移进行转移的指令
+![a a](/img/assembly_calll1.png)
+![a a](/img/assembly_calll2.png)
+
+# call指令 转移目的地址在指令中的call指令
+![a a](/img/assembly_calll3.png)
+![a a](/img/assembly_calll4.png)
+
+# 转移地址在寄存器中的call指令
+![a a](/img/assembly_calll5.png)
+![a a](/img/assembly_calll6.png)
+
+# 转移地址在内存中的call指令
+![a a](/img/assembly_calll8.png)
+![a a](/img/assembly_calll9.png)
+
